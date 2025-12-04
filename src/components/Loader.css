@@ -1,0 +1,193 @@
+/* ============================================
+   LOADER STYLES - Professional Design
+   ============================================ */
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.loader-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+}
+
+/* Outer rotating circle */
+.loader-circle-outer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  animation: rotate 2s linear infinite;
+}
+
+.loader-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.loader-path {
+  stroke-dasharray: 628.32;
+  stroke-dashoffset: 628.32;
+  animation: dash 2s ease-in-out infinite;
+  color: var(--accent);
+  stroke-width: 4;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 628.32;
+    opacity: 0.4;
+  }
+  50% {
+    stroke-dashoffset: 157.08;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 628.32;
+    opacity: 0.4;
+  }
+}
+
+/* Inner content */
+.loader-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.loader-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.loader-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    opacity: 1;
+    letter-spacing: 4px;
+  }
+  50% {
+    opacity: 0.8;
+    letter-spacing: 5px;
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .loader-overlay {
+  background: var(--bg-primary);
+}
+
+[data-theme="dark"] .loader-path {
+  color: var(--accent);
+}
+
+/* Additional outer glow effect */
+.loader-circle-outer::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .loader-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .loader-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .loader-text {
+    font-size: 1.25rem;
+    letter-spacing: 3px;
+  }
+}
+
