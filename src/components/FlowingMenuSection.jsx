@@ -14,6 +14,8 @@ import fifaLogo from '../assets/images/FIFA2026.png';
 import ufcLogo from '../assets/images/ufc 5.png';
 import mortalKombatLogo from '../assets/images/Mortal Kombat.png';
 import rocketLeagueLogo from '../assets/images/rocket leugue.png';
+import tekken8Logo from '../assets/images/TEKKEN 8.png';
+import gtaVLogo from '../assets/images/GTA V.png';
 
 // PC GAMES - using correct images
 const pcGames = [
@@ -32,7 +34,9 @@ const playstationGames = [
   { name: 'FIFA 26', image: fifaLogo },
   { name: 'UFC 5', image: ufcLogo },
   { name: 'Mortal Kombat', image: mortalKombatLogo },
-  { name: 'Rocket League', image: rocketLeagueLogo }
+  { name: 'Rocket League', image: rocketLeagueLogo },
+  { name: 'Tekken 8', image: tekken8Logo },
+  { name: 'GTA V', image: gtaVLogo }
 ];
 
 const FlowingMenuSection = () => {
@@ -45,14 +49,24 @@ const FlowingMenuSection = () => {
         <div className="games-category">
           <h3 className="games-category-title">PC GAMES</h3>
           <div className="games-grid">
-            {pcGames.map((game, index) => (
-              <div key={index} className="game-card">
-                <div className="game-card-image">
-                  <img src={game.image} alt={game.name} />
+            {pcGames.map((game, index) => {
+              // Add specific class names for games that need special styling
+              const getImageClassName = (gameName) => {
+                if (gameName === 'Counter Strike 2') {
+                  return 'game-card-image image-tekken';
+                }
+                return 'game-card-image';
+              };
+              
+              return (
+                <div key={index} className="game-card">
+                  <div className={getImageClassName(game.name)}>
+                    <img src={game.image} alt={game.name} />
+                  </div>
+                  <h4 className="game-card-name">{game.name}</h4>
                 </div>
-                <h4 className="game-card-name">{game.name}</h4>
-              </div>
-            ))}
+              );
+            })}
             {/* Special Card */}
             <div className="game-card special-card">
               <div className="special-card-content">
@@ -61,8 +75,7 @@ const FlowingMenuSection = () => {
                     text={["+ 2000\nGAMES"]}
                     typingSpeed={75}
                     pauseDuration={1500}
-                    showCursor={true}
-                    cursorCharacter="|"
+                    showCursor={false}
                     className="special-label-text"
                   />
                 </div>
@@ -75,14 +88,41 @@ const FlowingMenuSection = () => {
         <div className="games-category">
           <h3 className="games-category-title">PLAYSTATION GAMES</h3>
           <div className="games-grid">
-            {playstationGames.map((game, index) => (
-              <div key={index} className="game-card">
-                <div className="game-card-image">
-                  <img src={game.image} alt={game.name} />
+            {playstationGames.map((game, index) => {
+              // Add specific class names for games that need special styling
+              const getImageClassName = (gameName) => {
+                if (gameName === 'NBA 2K26' || gameName === 'UFC 5') {
+                  return 'game-card-image image-contain';
+                }
+                if (gameName === 'Tekken 8') {
+                  return 'game-card-image image-tekken';
+                }
+                return 'game-card-image';
+              };
+              
+              return (
+                <div key={index} className="game-card">
+                  <div className={getImageClassName(game.name)}>
+                    <img src={game.image} alt={game.name} />
+                  </div>
+                  <h4 className="game-card-name">{game.name}</h4>
                 </div>
-                <h4 className="game-card-name">{game.name}</h4>
+              );
+            })}
+            {/* Special Card */}
+            <div className="game-card special-card">
+              <div className="special-card-content">
+                <div className="special-card-text">
+                  <TextType
+                    text={["More games added regularly — stay tuned for updates!"]}
+                    typingSpeed={75}
+                    pauseDuration={1500}
+                    showCursor={false}
+                    className="special-label-text playstation-special-text"
+                  />
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>

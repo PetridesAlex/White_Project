@@ -35,38 +35,37 @@ const Contact = () => {
   // FUNCTION: Handle form submission
   // ============================================
   // This runs when user clicks "Send Message" button
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     // Prevent default form submission (stops page from reloading)
     e.preventDefault();
     
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/contact';
-    
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        alert(data.message || 'Thank you for your message! We will get back to you soon.');
-        // Reset form to empty values
-        setFormData({
-          name: '',
-          email: '',
-          message: ''
-        });
-      } else {
-        alert(data.error || 'Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error sending message:', error);
-      alert('Failed to send message. Please try again later.');
+    // Validate form fields
+    if (!formData.name || !formData.email || !formData.message) {
+      alert('Please fill in all fields before sending.');
+      return;
     }
+    
+    // Create Gmail compose URL with pre-filled form data
+    const subject = encodeURIComponent(`Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n\n` +
+      `Email: ${formData.email}\n\n` +
+      `Message:\n${formData.message}`
+    );
+    
+    // Open Gmail compose in new tab
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=whitetigerbypro@gmail.com&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank');
+    
+    // Reset form after opening Gmail
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
+    
+    // Show confirmation message
+    alert('Opening Gmail to send your message. Please complete the email and send it.');
   };
 
   return (
@@ -74,7 +73,7 @@ const Contact = () => {
       id="contact" 
       className="contact" 
       style={{
-        background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("${contactBackground}") center/cover no-repeat fixed`
+        background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("${contactBackground}") center/cover no-repeat`
       }}
     >
       <div className="contact-wrapper">
@@ -83,11 +82,18 @@ const Contact = () => {
           <div className="contact-info">
             <div className="info-item">
               <h3>📍 Location</h3>
-              <p>Spyrou Kyprianou Ave 4, Limassol 4003</p>
+              <a 
+                href="https://maps.google.com/?q=Spyrou+Kyprianou+Ave+4,+Limassol+4003" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="contact-button"
+              >
+                📍 Spyrou Kyprianou Ave 4, Limassol 4003
+              </a>
             </div>
             <div className="info-item">
               <h3>🕐 Hours</h3>
-              <p>
+              <div className="contact-button">
                 Friday 09:00am-03:00am<br />
                 Saturday 09:00am-03:00am<br />
                 Sunday 09:00am-03:00am<br />
@@ -95,11 +101,23 @@ const Contact = () => {
                 Tuesday 09:00am-03:00am<br />
                 Wednesday 09:00am-03:00am<br />
                 Thursday 09:00am-03:00am
-              </p>
+              </div>
             </div>
             <div className="info-item">
               <h3>📞 Contact</h3>
-              <p>Phone: +35797973773<br />Email: whitetigerbypro@gmail.com</p>
+              <div className="contact-buttons">
+                <a href="tel:+35797973773" className="contact-button">
+                  📞 Phone: +35797973773
+                </a>
+                <a 
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=whitetigerbypro@gmail.com&su=Contact%20from%20White%20Tiger%20Website" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="contact-button"
+                >
+                  ✉️ Email: whitetigerbypro@gmail.com
+                </a>
+              </div>
             </div>
           </div>
           <div className="contact-form">

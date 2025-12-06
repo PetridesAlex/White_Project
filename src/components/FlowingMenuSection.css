@@ -2,6 +2,34 @@
     padding: 120px 0;
     background: #FFFFFF;
     position: relative;
+    overflow: hidden;
+}
+
+.games-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(128, 128, 128, 0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.games-section::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, rgba(128, 128, 128, 0.05), transparent);
+    border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .games-wrapper {
@@ -11,10 +39,28 @@
 }
 
 .games-section .section-title-large {
+    font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     color: #333333;
     text-align: center;
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(2.5rem, 7vw, 5rem);
     margin-bottom: 4rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 2rem 0;
+}
+
+.games-section .section-title-large::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(128, 128, 128, 0.3), transparent);
+    border-radius: 2px;
 }
 
 .games-category {
@@ -22,13 +68,15 @@
 }
 
 .games-category-title {
-    font-size: 2rem;
+    font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 700;
     color: #333333;
     text-align: center;
     margin-bottom: 2rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .games-grid {
@@ -40,13 +88,13 @@
 }
 
 .game-card {
-    background: #FFFFFF;
+    background: rgba(128, 128, 128, 0.15);
     border-radius: 16px;
     padding: 1.5rem;
     width: 100%;
     max-width: 300px;
-    box-shadow: 0 4px 20px rgba(135, 206, 235, 0.2);
-    border: 2px solid rgba(135, 206, 235, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(128, 128, 128, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
@@ -56,31 +104,15 @@
     overflow: hidden;
 }
 
-.game-card-image {
-    background: #FFFFFF;
-}
-
 .game-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(135, 206, 235, 0.1) 0%, rgba(74, 144, 226, 0.1) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
-}
-
-.game-card:hover::before {
-    opacity: 1;
+    display: none;
 }
 
 .game-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(135, 206, 235, 0.4);
-    border-color: rgba(135, 206, 235, 0.6);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(128, 128, 128, 0.5);
+    background: rgba(128, 128, 128, 0.2);
 }
 
 .game-card-image {
@@ -91,23 +123,47 @@
     justify-content: center;
     position: relative;
     z-index: 1;
-    background: #FFFFFF;
+    background: transparent;
     border-radius: 12px;
     overflow: hidden;
-    padding: 1rem;
+    padding: 0;
 }
 
 .game-card-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background: #FFFFFF;
-    mix-blend-mode: multiply;
+    object-fit: cover;
+    background: transparent;
     transition: transform 0.3s ease;
 }
 
 .game-card:hover .game-card-image img {
     transform: scale(1.1);
+}
+
+/* Special styling for NBA 2K26 and UFC 5 - restore original contain styling */
+.game-card-image.image-contain {
+    background: #FFFFFF;
+    padding: 1rem;
+}
+
+.game-card-image.image-contain img {
+    object-fit: contain;
+    background: #FFFFFF;
+    mix-blend-mode: multiply;
+}
+
+/* Special styling for Tekken 8 - better fit */
+.game-card-image.image-tekken {
+    background: transparent;
+    padding: 0.25rem;
+}
+
+.game-card-image.image-tekken img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
 }
 
 .game-card-name {
@@ -172,29 +228,47 @@
 }
 
 .special-label-text {
+    font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     font-size: 5rem;
-    font-weight: 900;
+    font-weight: 700;
     color: #333333;
     text-align: center;
     line-height: 1.2;
     width: 100%;
+    white-space: pre-wrap;
+    display: block;
+    letter-spacing: 2px;
 }
 
 .special-label-text .text-type__content {
+    font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     font-size: 5rem;
-    font-weight: 900;
+    font-weight: 700;
     color: #333333;
     text-align: center;
     line-height: 1.2;
     white-space: pre-wrap;
     display: block;
+    letter-spacing: 2px;
 }
 
-.special-label-text .text-type__cursor {
-    font-size: 5rem;
-    color: #87CEEB;
-    font-weight: 900;
-    vertical-align: baseline;
+/* PlayStation Special Text - smaller font for longer message */
+.playstation-special-text {
+    font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem) !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    white-space: normal !important;
+    letter-spacing: 1px !important;
+}
+
+.playstation-special-text .text-type__content {
+    font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem) !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    white-space: normal !important;
+    letter-spacing: 1px !important;
 }
 
 /* Responsive */
@@ -218,12 +292,7 @@
         max-width: 100% !important;
     }
 
-    .special-label-text,
-    .special-label-text .text-type__content {
-        font-size: 2.5rem;
-    }
-
-    .special-label-text .text-type__cursor {
+    .special-label-text {
         font-size: 2.5rem;
     }
 }

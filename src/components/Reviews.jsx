@@ -192,7 +192,7 @@ const Reviews = () => {
 
     // Auto-cycle through reviews with smooth slide animation
     const interval = setInterval(() => {
-      setCurrentReviewIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+        setCurrentReviewIndex((prevIndex) => (prevIndex + 1) % reviews.length);
     }, 4000); // Change review every 4 seconds
 
     return () => clearInterval(interval);
@@ -210,10 +210,9 @@ const Reviews = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
       }}>
         <div className="reviews-wrapper">
-          <h2 className="section-title-large">WHAT OUR CUSTOMERS SAY</h2>
+          <h2 className="section-title-large">HEAR FROM OUR COMMUNITY</h2>
           <div className="reviews-container">
             <div className="review-card loading">Loading reviews...</div>
           </div>
@@ -232,14 +231,13 @@ const Reviews = () => {
     background: '#FFFFFF',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed'
+    backgroundRepeat: 'no-repeat'
   };
 
   return (
     <section id="reviews" className="reviews-section" style={reviewsStyle}>
       <div className="reviews-wrapper">
-        <h2 className="section-title-large">WHAT OUR CUSTOMERS SAY</h2>
+        <h2 className="section-title-large">HEAR FROM OUR COMMUNITY</h2>
         <div className="reviews-container">
           <div className="reviews-slider">
             {reviews.map((review, index) => {
@@ -251,23 +249,23 @@ const Reviews = () => {
                 <div
                   key={index}
                   className={`review-card ${isActive ? 'active' : ''} ${isPrev ? 'prev' : ''} ${isNext ? 'next' : ''}`}
-                >
-                  <div className="review-header">
-                    <div className="review-author">
-                      <div className="review-avatar">
+          >
+            <div className="review-header">
+              <div className="review-author">
+                <div className="review-avatar">
                         {review.name.charAt(0)}
-                      </div>
-                      <div className="review-author-info">
+                </div>
+                <div className="review-author-info">
                         <h3 className="review-name">{review.name}</h3>
-                        <div className="review-rating">
+                  <div className="review-rating">
                           <span className="review-stars">{renderStars(review.rating)}</span>
                           <span className="review-date">{review.date}</span>
-                        </div>
-                      </div>
-                    </div>
                   </div>
-                  <p className="review-text">"{review.text}"</p>
                 </div>
+              </div>
+            </div>
+                  <p className="review-text">"{review.text}"</p>
+          </div>
               );
             })}
           </div>

@@ -104,7 +104,6 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero">
-      {/* GhostCursor disabled for better performance */}
       <div className="hero-content">
         <div className="hero-logo-container">
           <h1 className="hero-welcome">White Tiger</h1>

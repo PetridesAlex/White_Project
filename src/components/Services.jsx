@@ -39,7 +39,6 @@ const Services = () => {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed'
   };
 
   return (
