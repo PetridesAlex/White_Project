@@ -26,24 +26,7 @@ function Loader({ onLoadComplete }) {
   return (
     <div className={`loader-overlay ${!isVisible ? 'fade-out' : ''}`}>
       <div className="loader-container">
-        {/* Outer rotating circle */}
-        <div className="loader-circle-outer">
-          <svg className="loader-svg" viewBox="0 0 200 200">
-            <circle
-              className="loader-path"
-              cx="100"
-              cy="100"
-              r="100"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
-        
-        {/* Inner content */}
         <div className="loader-content">
-          <img src={logo} alt="White Tiger Logo" className="loader-logo" />
           <h1 className="loader-text">WHITE TIGER</h1>
         </div>
       </div>

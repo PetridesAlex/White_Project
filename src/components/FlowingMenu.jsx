@@ -1,10 +1,10 @@
 import React from 'react';
 import './FlowingMenu.css';
 
-function FlowingMenu({ items = [] }) {
+function FlowingMenu({ items = [], horizontal = false }) {
   return (
     <div className="menu-wrap">
-      <nav className="menu">
+      <nav className={`menu ${horizontal ? 'horizontal' : ''}`}>
         {items.map((item, idx) => (
           <MenuItem key={idx} {...item} />
         ))}
@@ -16,7 +16,7 @@ function FlowingMenu({ items = [] }) {
 function MenuItem({ link, text, image }) {
   const repeatedMarqueeContent = Array.from({ length: 10 }).map((_, idx) => (
     <React.Fragment key={idx}>
-      <span>{text}</span>
+      {text && <span>{text}</span>}
       <div className="marquee__img" style={{ backgroundImage: `url(${image})` }} />
     </React.Fragment>
   ));

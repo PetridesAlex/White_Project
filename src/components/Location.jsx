@@ -1,6 +1,8 @@
 // ============================================
 // LOCATION COMPONENT
 // ============================================
+import locationBackground from '../assets/images/download (2).jpeg';
+
 const Location = () => {
   // Google Maps embed URL with exact coordinates for accurate pin placement
   // Coordinates: 34.6982409, 33.0486068
@@ -12,8 +14,16 @@ const Location = () => {
   const mapUrl = `https://www.google.com/maps?q=${latitude},${longitude}&hl=en&z=17&output=embed`;
   const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
 
+  const locationStyle = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${locationBackground})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed'
+  };
+
   return (
-    <section id="location" className="location">
+    <section id="location" className="location" style={locationStyle}>
       <div className="location-wrapper">
         <div className="location-content">
           <div className="location-info-wrapper">
