@@ -293,7 +293,40 @@
     }
 
     .special-label-text {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.1;
+    }
+
+    .special-label-text .text-type__content {
+        font-size: clamp(2rem, 8vw, 3rem) !important;
+        line-height: 1.1 !important;
+    }
+
+    .playstation-special-text {
+        font-size: clamp(1rem, 2.2vw, 1.5rem) !important;
+        line-height: 1.4 !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .playstation-special-text .text-type__content {
+        font-size: clamp(1rem, 2.2vw, 1.5rem) !important;
+        line-height: 1.4 !important;
+        letter-spacing: 0.5px !important;
+    }
+}
+
+/* Extra small devices (phones in portrait, less than 480px) */
+@media (max-width: 480px) {
+    .playstation-special-text {
+        font-size: clamp(0.85rem, 2vw, 1.2rem) !important;
+        line-height: 1.35 !important;
+        letter-spacing: 0.3px !important;
+    }
+
+    .playstation-special-text .text-type__content {
+        font-size: clamp(0.85rem, 2vw, 1.2rem) !important;
+        line-height: 1.35 !important;
+        letter-spacing: 0.3px !important;
     }
 }
 

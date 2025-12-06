@@ -72,7 +72,7 @@ const FlowingMenuSection = () => {
               <div className="special-card-content">
                 <div className="special-card-text">
                   <TextType
-                    text={["+ 2000\nGAMES"]}
+                    text={["+2000\nGAMES"]}
                     typingSpeed={75}
                     pauseDuration={1500}
                     showCursor={false}

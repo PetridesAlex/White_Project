@@ -94,13 +94,13 @@ const Contact = () => {
             <div className="info-item">
               <h3>🕐 Hours</h3>
               <div className="contact-button">
-                Friday 09:00am-03:00am<br />
-                Saturday 09:00am-03:00am<br />
-                Sunday 09:00am-03:00am<br />
-                Monday 09:00am-03:00am<br />
-                Tuesday 09:00am-03:00am<br />
-                Wednesday 09:00am-03:00am<br />
-                Thursday 09:00am-03:00am
+                Monday: 09:00 AM – 03:00 AM<br />
+                Tuesday: 09:00 AM – 03:00 AM<br />
+                Wednesday: 09:00 AM – 03:00 AM<br />
+                Thursday: 09:00 AM – 03:00 AM<br />
+                Friday: 09:00 AM – 03:00 AM<br />
+                Saturday: 09:00 AM – 03:00 AM<br />
+                Sunday: 09:00 AM – 03:00 AM
               </div>
             </div>
             <div className="info-item">

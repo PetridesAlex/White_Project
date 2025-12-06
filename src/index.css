@@ -758,11 +758,11 @@ body {
 .reviews-wrapper .section-title-large {
     font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     color: #333333;
-    margin-bottom: 2.5rem;
+    margin-bottom: clamp(2rem, 5vw, 2.5rem);
     text-align: center;
-    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-size: clamp(2rem, 7vw, 5rem);
     font-weight: 700;
-    letter-spacing: 4px;
+    letter-spacing: clamp(2px, 1vw, 4px);
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -771,9 +771,9 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    min-height: 300px;
+    min-height: clamp(300px, 40vw, 400px);
     position: relative;
-    height: 400px;
+    height: clamp(300px, 40vw, 400px);
     overflow: hidden;
 }
 
@@ -790,8 +790,8 @@ body {
 
 .review-card {
     background: rgba(135, 206, 235, 0.2);
-    padding: 1.25rem;
-    border-radius: 12px;
+    padding: clamp(1rem, 2.5vw, 1.25rem);
+    border-radius: clamp(10px, 1.5vw, 12px);
     max-width: 500px;
     width: 100%;
     box-shadow: 0 8px 32px rgba(135, 206, 235, 0.2);
@@ -809,21 +809,26 @@ body {
 
 .review-card.active {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    z-index: 3;
+    transform: translateY(0) scale(1.05);
+    z-index: 10;
     pointer-events: auto;
+    background: rgba(135, 206, 235, 0.35) !important;
+    box-shadow: 0 12px 48px rgba(135, 206, 235, 0.4), 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    border: 2px solid rgba(135, 206, 235, 0.6) !important;
 }
 
 .review-card.prev {
-    opacity: 0.4;
-    transform: translateY(-60px) scale(0.8);
+    opacity: 0.15;
+    transform: translateY(-80px) scale(0.7);
     z-index: 1;
+    filter: blur(2px);
 }
 
 .review-card.next {
-    opacity: 0.4;
-    transform: translateY(60px) scale(0.8);
+    opacity: 0.15;
+    transform: translateY(80px) scale(0.7);
     z-index: 1;
+    filter: blur(2px);
 }
 
 .review-card.visible::before {
@@ -866,10 +871,10 @@ body {
 }
 
 .review-name {
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
     font-weight: 700;
     color: #333333;
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 clamp(0.2rem, 0.5vw, 0.25rem) 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -889,14 +894,13 @@ body {
 
 .review-date {
     color: #666666;
-    color: rgba(255, 255, 255, 0.8);
     font-size: 0.8rem;
 }
 
 .review-text {
     color: #333333;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: clamp(0.85rem, 1.3vw, 0.9rem);
+    line-height: clamp(1.4, 2vw, 1.5);
     margin: 0;
     font-style: italic;
     opacity: 0.95;
@@ -1297,7 +1301,27 @@ body {
 }
 
 /* Responsive Design */
+
+/* Tablet and smaller desktop */
 @media (max-width: 1024px) {
+    .reviews-wrapper {
+        padding: 0 30px;
+    }
+
+    .reviews-container {
+        min-height: 350px;
+        height: 350px;
+    }
+
+    .review-card {
+        max-width: 450px;
+        padding: 1.125rem;
+    }
+
+    .reviews-slider {
+        max-width: 450px;
+    }
+
     .location-content {
         grid-template-columns: 1fr;
         gap: 3rem;
@@ -1372,29 +1396,99 @@ body {
         padding: 0 20px;
     }
 
-    .review-card {
-        padding: 2rem;
+    /* Reviews Section Mobile Optimizations */
+    .reviews-section {
+        padding: clamp(30px, 8vw, 40px) 0 !important;
+    }
+
+    .reviews-wrapper {
+        padding: 0 20px;
+    }
+
+    .reviews-wrapper .section-title-large {
+        font-size: clamp(1.3rem, 4.5vw, 2rem) !important;
+        margin-bottom: clamp(0.75rem, 3vw, 1rem) !important;
+        letter-spacing: 1px !important;
+    }
+
+    .reviews-container {
+        min-height: clamp(200px, 50vw, 240px) !important;
+        height: clamp(200px, 50vw, 240px) !important;
+        padding: 0.25rem 0;
+    }
+
+    .reviews-slider {
         max-width: 100%;
     }
 
-    .review-name {
-        font-size: 1.25rem;
+    .review-card {
+        padding: clamp(0.75rem, 3vw, 1rem) clamp(0.75rem, 3vw, 0.875rem) !important;
+        max-width: 100%;
+        background: rgba(135, 206, 235, 0.25) !important;
+        border: 1.5px solid rgba(135, 206, 235, 0.4) !important;
+        box-shadow: 0 4px 16px rgba(135, 206, 235, 0.25) !important;
+        border-radius: clamp(10px, 2vw, 12px);
     }
 
-    .review-text {
-        font-size: 1rem;
+    .review-card.active {
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+        background: rgba(135, 206, 235, 0.35) !important;
+        box-shadow: 0 8px 32px rgba(135, 206, 235, 0.4), 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+        border: 2px solid rgba(135, 206, 235, 0.6) !important;
+    }
+
+    .review-card.prev,
+    .review-card.next {
+        opacity: 0.1 !important;
+        filter: blur(3px) !important;
+        transform: translateY(0) scale(0.9) !important;
+    }
+
+    .review-header {
+        margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
     }
 
     .review-author {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+        flex-direction: row;
+        align-items: center;
+        gap: clamp(0.5rem, 2vw, 0.75rem);
+        margin-bottom: clamp(0.5rem, 2vw, 0.6rem);
     }
 
     .review-avatar {
-        width: 50px;
-        height: 50px;
-        font-size: 1.25rem;
+        width: clamp(26px, 7vw, 30px) !important;
+        height: clamp(26px, 7vw, 30px) !important;
+        font-size: clamp(0.75rem, 2vw, 0.85rem) !important;
+        flex-shrink: 0;
+    }
+
+    .review-name {
+        font-size: clamp(0.7rem, 2.5vw, 0.85rem) !important;
+        font-weight: 700 !important;
+        color: #1a1a2e !important;
+        margin-bottom: clamp(0.15rem, 1vw, 0.25rem) !important;
+        letter-spacing: 0.5px;
+    }
+
+    .review-text {
+        font-size: clamp(0.65rem, 2.2vw, 0.8rem) !important;
+        color: #2a2a2a !important;
+        font-weight: 400 !important;
+        line-height: clamp(1.25, 2vw, 1.4) !important;
+    }
+
+    .review-stars {
+        font-size: clamp(0.6rem, 2vw, 0.75rem) !important;
+    }
+
+    .review-date {
+        font-size: clamp(0.55rem, 1.8vw, 0.7rem) !important;
+        color: #666666 !important;
+    }
+
+    .review-rating {
+        gap: clamp(0.5rem, 2vw, 0.75rem);
     }
 
     .contact-content {
@@ -1422,39 +1516,90 @@ body {
     }
 
     .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 0.75rem;
         max-width: 100%;
     }
     
 
     .service-card-wrapper {
         max-width: 100%;
+        aspect-ratio: 1;
+        margin: 0;
+    }
+
+    /* Auto-flip animation for mobile - cards will automatically flip */
+    .service-card {
+        animation: autoFlipMobile 8s ease-in-out infinite;
+    }
+
+    /* Staggered animation delays for each card */
+    .service-card-wrapper:nth-child(1) .service-card {
+        animation-delay: 0s;
+    }
+
+    .service-card-wrapper:nth-child(2) .service-card {
+        animation-delay: 1s;
+    }
+
+    .service-card-wrapper:nth-child(3) .service-card {
+        animation-delay: 2s;
+    }
+
+    .service-card-wrapper:nth-child(4) .service-card {
+        animation-delay: 3s;
+    }
+
+    .service-card-wrapper:nth-child(5) .service-card {
+        animation-delay: 4s;
+    }
+
+    .service-card-wrapper:nth-child(6) .service-card {
+        animation-delay: 5s;
+    }
+
+    @keyframes autoFlipMobile {
+        0%, 35% {
+            transform: rotateY(0deg);
+        }
+        40%, 60% {
+            transform: rotateY(180deg);
+        }
+        65%, 100% {
+            transform: rotateY(0deg);
+        }
+    }
+
+    /* Disable hover flip on mobile - auto-flip only */
+    .service-card-wrapper:hover .service-card {
+        animation: autoFlipMobile 8s ease-in-out infinite;
     }
 
     .service-card-front,
     .service-card-back {
-        padding: 1.5rem;
-        gap: 0.8rem;
+        padding: 0.875rem;
+        gap: 0.5rem;
+        border-radius: 12px;
     }
 
     .service-icon {
-        font-size: 3rem;
+        font-size: 1.75rem;
         margin: 0;
     }
 
     .service-card-front h3 {
-        font-size: 1rem;
+        font-size: clamp(0.65rem, 2.5vw, 0.8rem);
         margin: 0;
-        padding: 0 0.5rem;
-        line-height: 1.2;
+        padding: 0 0.25rem;
+        line-height: 1.15;
+        letter-spacing: 1px;
     }
 
     .service-card-back p {
-        font-size: 0.8rem;
-        padding: 0 0.5rem;
-        line-height: 1.4;
+        font-size: clamp(0.6rem, 2.2vw, 0.75rem);
+        padding: 0 0.25rem;
+        line-height: 1.3;
         margin: 0;
     }
 
@@ -1466,6 +1611,96 @@ body {
 
     .footer-social {
         justify-content: center;
+    }
+}
+
+/* Extra small devices (phones in portrait, less than 480px) */
+@media (max-width: 480px) {
+    .reviews-wrapper {
+        padding: 0 15px;
+    }
+
+    .reviews-container {
+        min-height: clamp(180px, 45vw, 220px) !important;
+        height: clamp(180px, 45vw, 220px) !important;
+    }
+
+    .review-card {
+        padding: clamp(0.65rem, 2.5vw, 0.875rem) clamp(0.65rem, 2.5vw, 0.75rem) !important;
+        border-radius: clamp(8px, 2vw, 10px);
+    }
+
+    .reviews-wrapper .section-title-large {
+        font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
+        margin-bottom: clamp(0.5rem, 2vw, 0.75rem) !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .review-avatar {
+        width: clamp(24px, 6vw, 28px) !important;
+        height: clamp(24px, 6vw, 28px) !important;
+        font-size: clamp(0.7rem, 1.8vw, 0.8rem) !important;
+    }
+
+    .review-name {
+        font-size: clamp(0.65rem, 2.2vw, 0.8rem) !important;
+    }
+
+    .review-text {
+        font-size: clamp(0.6rem, 2vw, 0.75rem) !important;
+        line-height: 1.2 !important;
+    }
+
+    .review-author {
+        gap: clamp(0.4rem, 1.5vw, 0.5rem);
+        margin-bottom: clamp(0.4rem, 1.5vw, 0.5rem);
+    }
+
+    .review-header {
+        margin-bottom: clamp(0.4rem, 1.5vw, 0.5rem);
+    }
+
+    .review-stars {
+        font-size: clamp(0.55rem, 1.8vw, 0.7rem) !important;
+    }
+
+    .review-date {
+        font-size: clamp(0.5rem, 1.6vw, 0.65rem) !important;
+    }
+
+    .reviews-section {
+        padding: clamp(25px, 6vw, 35px) 0 !important;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+    }
+
+    .service-card-wrapper {
+        max-width: 100% !important;
+    }
+
+    .service-card-front,
+    .service-card-back {
+        padding: 0.75rem !important;
+        gap: 0.4rem !important;
+        border-radius: 10px !important;
+    }
+
+    .service-icon {
+        font-size: 1.5rem !important;
+    }
+
+    .service-card-front h3 {
+        font-size: clamp(0.6rem, 2.2vw, 0.75rem) !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .service-card-back p {
+        font-size: clamp(0.55rem, 2vw, 0.7rem) !important;
+        line-height: 1.25 !important;
     }
 }
 
