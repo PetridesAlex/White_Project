@@ -15,7 +15,7 @@ const Footer = () => {
           
           <div className="footer-social">
             <a 
-              href="https://www.instagram.com" 
+              href="https://www.instagram.com/white_tiger_cy/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-icon"
@@ -28,7 +28,7 @@ const Footer = () => {
               </svg>
             </a>
             <a 
-              href="https://www.tiktok.com" 
+              href="https://www.tiktok.com/@white.tiger725?_r=1&_d=secCgYIASAHKAESPgo8guzou0Zf8hr6L6z6PT46qj2uc3y%2Fegh2uRVZk4WDPKMwPArXA4X8EuzHZiwhyusI%2Ba4pJi4pDtb1l4QPGgA%3D&_svg=2&checksum=2508b71bb3da817ab60864a4eba786fddd0c2eabbd323d6e2aeaea90eced51de&item_author_type=2&sec_uid=MS4wLjABAAAA81mhP4qz6hEs6RjjgMjwm7uqxw8aa7MncMGTJPo1jWPsOaxTe9eaKWCbBu8Fu8E6&sec_user_id=MS4wLjABAAAA6FpvxDCFzHjlDla-RlEYWt4SI77kJQWauyI28TovWR-Jl3PkRnpBQeEc19Gst1yP&share_app_id=1233&share_author_id=7568839364731880470&share_link_id=5D7857F8-D920-4FBB-B606-7F9099851A09&share_region=CY&share_scene=1&sharer_language=en&social_share_type=5&source=h5_m&timestamp=1764946291&tt_from=copy&u_code=dbf8j07g87kmff&ug_btm=b6880%2Cb5836&user_id=6808191380541342726&utm_campaign=client_share&utm_medium=ios&utm_source=copy" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-icon"
