@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useCallback } from 'react';
 import './ElectricBorder.css';
 
 const ElectricBorder = ({ children, color = '#5227FF', speed = 1, chaos = 1, thickness = 2, className, style }) => {
@@ -7,8 +7,12 @@ const ElectricBorder = ({ children, color = '#5227FF', speed = 1, chaos = 1, thi
   const svgRef = useRef(null);
   const rootRef = useRef(null);
   const strokeRef = useRef(null);
+  const isVisibleRef = useRef(true);
+  const updateTimerRef = useRef(null);
 
-  const updateAnim = () => {
+  const updateAnim = useCallback(() => {
+    if (!isVisibleRef.current) return;
+    
     const svg = svgRef.current;
     const host = rootRef.current;
     if (!svg || !host) return;
@@ -58,23 +62,48 @@ const ElectricBorder = ({ children, color = '#5227FF', speed = 1, chaos = 1, thi
         }
       });
     });
-  };
+  }, [speed, chaos, filterId]);
+
+  // Throttled resize handler
+  const throttledUpdate = useCallback(() => {
+    if (updateTimerRef.current) return;
+    updateTimerRef.current = setTimeout(() => {
+      updateAnim();
+      updateTimerRef.current = null;
+    }, 100);
+  }, [updateAnim]);
 
   useEffect(() => {
     updateAnim();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [speed, chaos]);
+  }, [updateAnim]);
 
   useLayoutEffect(() => {
     if (!rootRef.current) return;
 
-    const ro = new ResizeObserver(() => updateAnim());
+    // IntersectionObserver to pause animations when not visible
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          isVisibleRef.current = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.01 }
+    );
+    io.observe(rootRef.current);
+
+    // Throttled ResizeObserver
+    const ro = new ResizeObserver(throttledUpdate);
     ro.observe(rootRef.current);
     updateAnim();
 
-    return () => ro.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {
+      io.disconnect();
+      ro.disconnect();
+      if (updateTimerRef.current) {
+        clearTimeout(updateTimerRef.current);
+      }
+    };
+  }, [updateAnim, throttledUpdate]);
 
   const vars = {
     ['--electric-border-color']: color,

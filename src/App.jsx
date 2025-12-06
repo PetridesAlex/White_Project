@@ -1,17 +1,19 @@
 // ============================================
 // IMPORTS: Bring in React features and components
 // ============================================
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 
-// Import all our custom components (like importing functions)
+// Import critical components immediately
 import Loader from './components/Loader';
 import Hero from './components/Hero';
-import Services from './components/Services';
-import Reviews from './components/Reviews';
-import FlowingMenuSection from './components/FlowingMenuSection';
-import Contact from './components/Contact';
-import Location from './components/Location';
-import Footer from './components/Footer';
+
+// Lazy load components for better performance (code splitting)
+const Services = lazy(() => import('./components/Services'));
+const Reviews = lazy(() => import('./components/Reviews'));
+const FlowingMenuSection = lazy(() => import('./components/FlowingMenuSection'));
+const Contact = lazy(() => import('./components/Contact'));
+const Location = lazy(() => import('./components/Location'));
+const Footer = lazy(() => import('./components/Footer'));
 
 // ============================================
 // MAIN APP COMPONENT
@@ -61,17 +63,32 @@ function App() {
   // RENDER: What the component displays
   // ============================================
   // This JSX (HTML-like code) is what users see
+  // Loading fallback component
+  const LoadingFallback = () => (
+    <div style={{ 
+      minHeight: '200px', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      opacity: 0.5
+    }}>
+      <div>Loading...</div>
+    </div>
+  );
+
   return (
     <div className="App">
       {isLoading && <Loader onLoadComplete={handleLoadComplete} />}
       {/* All page sections */}
       <Hero />
-      <Services />
-      <Reviews />
-      <FlowingMenuSection />
-      <Contact />
-      <Location />
-      <Footer />
+      <Suspense fallback={<LoadingFallback />}>
+        <Services />
+        <Reviews />
+        <FlowingMenuSection />
+        <Contact />
+        <Location />
+        <Footer />
+      </Suspense>
     </div>
   );
 }

@@ -61,9 +61,27 @@ const useAnimationLoop = (trackRef, targetVelocity, seqWidth, seqHeight, isHover
   const lastTimestampRef = useRef(null);
   const offsetRef = useRef(0);
   const velocityRef = useRef(0);
+  const isVisibleRef = useRef(true);
+  
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+    
+    // IntersectionObserver to pause animation when not visible
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          isVisibleRef.current = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.01, rootMargin: '50px' }
+    );
+    
+    const container = track.closest('.logoloop');
+    if (container) {
+      io.observe(container);
+    }
+    
     const seqSize = isVertical ? seqHeight : seqWidth;
     if (seqSize > 0) {
       offsetRef.current = ((offsetRef.current % seqSize) + seqSize) % seqSize;
@@ -72,7 +90,25 @@ const useAnimationLoop = (trackRef, targetVelocity, seqWidth, seqHeight, isHover
         : `translate3d(${-offsetRef.current}px, 0, 0)`;
       track.style.transform = transformValue;
     }
+    
+    let lastFrameTime = 0;
+    const targetFPS = 60;
+    const frameInterval = 1000 / targetFPS;
+    
     const animate = timestamp => {
+      if (!isVisibleRef.current) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      
+      // Frame rate limiting for better performance
+      const elapsed = timestamp - lastFrameTime;
+      if (elapsed < frameInterval) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameTime = timestamp - (elapsed % frameInterval);
+      
       if (lastTimestampRef.current === null) {
         lastTimestampRef.current = timestamp;
       }
@@ -93,7 +129,9 @@ const useAnimationLoop = (trackRef, targetVelocity, seqWidth, seqHeight, isHover
       rafRef.current = requestAnimationFrame(animate);
     };
     rafRef.current = requestAnimationFrame(animate);
+    
     return () => {
+      io.disconnect();
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
         rafRef.current = null;
@@ -233,7 +271,7 @@ export const LogoLoop = memo(
             height={item.height}
             alt={item.alt ?? ''}
             title={item.title}
-            loading="eager"
+            loading="lazy"
             decoding="async"
             draggable={false}
             style={{ display: 'block', visibility: 'visible', opacity: 1 }}

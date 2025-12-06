@@ -1,5 +1,4 @@
 import logo from '../assets/images/logo.png';
-import GhostCursor from './GhostCursor';
 import LogoLoop from './LogoLoop';
 import lolLogo from '../assets/images/image.png';
 import warcraftLogo from '../assets/images/world of warcraft.png';
@@ -105,20 +104,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero">
-      <GhostCursor
-        color="#87CEEB"
-        brightness={1}
-        edgeIntensity={0}
-        trailLength={50}
-        inertia={0.5}
-        grainIntensity={0.05}
-        bloomStrength={0.1}
-        bloomRadius={1.0}
-        bloomThreshold={0.025}
-        fadeDelayMs={1000}
-        fadeDurationMs={1500}
-        zIndex={1}
-      />
+      {/* GhostCursor disabled for better performance */}
       <div className="hero-content">
         <div className="hero-logo-container">
           <h1 className="hero-welcome">White Tiger</h1>
@@ -131,14 +117,13 @@ const Hero = () => {
         <div className="hero-game-logos">
           <LogoLoop
             logos={gameLogos}
-            speed={150}
+            speed={80}
             direction="left"
             logoHeight={100}
             gap={80}
-            hoverSpeed={30}
-            scaleOnHover
-            fadeOut
-            fadeOutColor="#ffffff"
+            hoverSpeed={20}
+            scaleOnHover={false}
+            fadeOut={false}
             ariaLabel="Gaming partners"
           />
         </div>

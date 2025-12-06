@@ -27,6 +27,7 @@ function Loader({ onLoadComplete }) {
     <div className={`loader-overlay ${!isVisible ? 'fade-out' : ''}`}>
       <div className="loader-container">
         <div className="loader-content">
+          <img src={logo} alt="White Tiger Logo" className="loader-logo" />
           <h1 className="loader-text">WHITE TIGER</h1>
         </div>
       </div>

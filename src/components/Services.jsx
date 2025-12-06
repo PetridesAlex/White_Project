@@ -1,5 +1,3 @@
-import ElectricBorder from './ElectricBorder';
-
 const Services = () => {
 
   const services = [
@@ -22,6 +20,16 @@ const Services = () => {
       icon: '☕',
       title: 'Cafe & Lounge',
       description: 'Comfortable seating, refreshments, and a relaxing atmosphere for all your needs.'
+    },
+    {
+      icon: '🎂',
+      title: 'Create your own birthday parties & Events',
+      description: "Book your child's birthday with us! We provide a fully equipped play space with high-performance Gaming PCs, PlayStation 5 stations (managed and ready to play), plus a full menu of food and beverages. Fun, safe, and unforgettable — everything is taken care of."
+    },
+    {
+      icon: '🏢',
+      title: 'Corporate Events',
+      description: 'Host your corporate event in our modern, fully equipped space. Enjoy high-performance workstations, meeting areas, optional gaming stations for team-building, and a full menu of food and beverages. Perfect for workshops, team events, presentations, and after-work gatherings.'
     }
   ];
 
@@ -44,23 +52,15 @@ const Services = () => {
               key={index}
               className="service-card-wrapper"
             >
-              <ElectricBorder
-                color="#00f0ff"
-                speed={1.2}
-                chaos={1.2}
-                thickness={3}
-                style={{ borderRadius: 16 }}
-              >
-                <div className="service-card">
-                  <div className="service-card-front">
-                    <div className="service-icon">{service.icon}</div>
-                    <h3>{service.title}</h3>
-                  </div>
-                  <div className="service-card-back">
-                    <p>{service.description}</p>
-                  </div>
+              <div className="service-card">
+                <div className="service-card-front">
+                  <div className="service-icon">{service.icon}</div>
+                  <h3>{service.title}</h3>
                 </div>
-              </ElectricBorder>
+                <div className="service-card-back">
+                  <p>{service.description}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

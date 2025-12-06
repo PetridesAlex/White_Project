@@ -8,6 +8,8 @@
   width: 100%;
   height: 100%;
   display: block;
+  will-change: filter;
+  contain: layout style paint;
 }
 
 .eb-svg {
@@ -52,6 +54,8 @@
 
 .eb-stroke {
   border: var(--eb-border-width) solid var(--electric-border-color);
+  will-change: filter;
+  transform: translateZ(0);
 }
 
 .eb-glow-1 {
