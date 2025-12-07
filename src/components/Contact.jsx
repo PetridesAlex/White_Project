@@ -106,8 +106,15 @@ const Contact = () => {
             <div className="info-item">
               <h3>📞 Contact</h3>
               <div className="contact-buttons">
-                <a href="tel:+35797973773" className="contact-button">
+                <a href="tel:+35797973773" className="contact-button" title="Call +35797973773">
                   📞 Phone: +35797973773
+                </a>
+                <a 
+                  href="https://wa.me/35797973773?text=Hello%20White%20Tiger" 
+                  className="contact-button whatsapp-contact-button"
+                  title="WhatsApp: +35797973773"
+                >
+                  💬 WhatsApp: +35797973773
                 </a>
                 <a 
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=whitetigerbypro@gmail.com&su=Contact%20from%20White%20Tiger%20Website" 
