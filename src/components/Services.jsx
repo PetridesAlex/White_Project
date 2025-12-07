@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 const Services = () => {
+  const [flippedCards, setFlippedCards] = useState(new Set());
 
   const services = [
     {
@@ -33,6 +36,18 @@ const Services = () => {
     }
   ];
 
+  const handleCardClick = (index) => {
+    setFlippedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
+
   // Set white solid background
   const servicesStyle = {
     background: '#FFFFFF',
@@ -50,8 +65,11 @@ const Services = () => {
             <div
               key={index}
               className="service-card-wrapper"
+              onClick={() => handleCardClick(index)}
             >
-              <div className="service-card">
+              <div 
+                className={`service-card ${flippedCards.has(index) ? 'flipped' : ''}`}
+              >
                 <div className="service-card-front">
                   <div className="service-icon">{service.icon}</div>
                   <h3>{service.title}</h3>
