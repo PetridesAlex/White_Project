@@ -24,17 +24,20 @@ const Navbar = () => {
   // Close language dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Check if click is outside language menu
       if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
         setLangMenuOpen(false);
       }
+      // Check if click is outside WhatsApp menu
       if (whatsappMenuRef.current && !whatsappMenuRef.current.contains(event.target)) {
         setWhatsappMenuOpen(false);
       }
     };
 
     if (langMenuOpen || whatsappMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchstart', handleClickOutside);
+      // Use passive: false to allow preventDefault if needed
+      document.addEventListener('mousedown', handleClickOutside, { passive: true });
+      document.addEventListener('touchstart', handleClickOutside, { passive: true });
     }
 
     return () => {
@@ -157,7 +160,14 @@ const Navbar = () => {
           <div className="whatsapp-selector" ref={whatsappMenuRef}>
             <button 
               className="whatsapp-icon"
-              onClick={() => setWhatsappMenuOpen(!whatsappMenuOpen)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setWhatsappMenuOpen(!whatsappMenuOpen);
+              }}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+              }}
               aria-label="Show WhatsApp number"
               type="button"
             >
@@ -171,14 +181,24 @@ const Navbar = () => {
                 <a 
                   href="tel:+35797973773" 
                   className="whatsapp-option"
-                  onClick={() => setWhatsappMenuOpen(false)}
+                  onClick={(e) => {
+                    setWhatsappMenuOpen(false);
+                  }}
+                  onTouchStart={(e) => {
+                    e.stopPropagation();
+                  }}
                 >
                   📞 Call
                 </a>
                 <a 
                   href="https://wa.me/35797973773?text=Hello%20White%20Tiger" 
                   className="whatsapp-option"
-                  onClick={() => setWhatsappMenuOpen(false)}
+                  onClick={(e) => {
+                    setWhatsappMenuOpen(false);
+                  }}
+                  onTouchStart={(e) => {
+                    e.stopPropagation();
+                  }}
                 >
                   💬 WhatsApp
                 </a>
