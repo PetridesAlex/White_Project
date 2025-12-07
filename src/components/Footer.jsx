@@ -39,7 +39,7 @@ const Footer = () => {
               </svg>
             </a>
             <a 
-              href="https://discord.com" 
+              href="https://discord.gg" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-icon"

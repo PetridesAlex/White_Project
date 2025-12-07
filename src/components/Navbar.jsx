@@ -148,7 +148,7 @@ const Navbar = () => {
           </div>
           {/* WhatsApp link */}
           <a 
-            href="https://wa.me/35797973773" 
+            href="https://wa.me/35797973773?text=Hello%20White%20Tiger" 
             target="_blank" 
             rel="noopener noreferrer"
             className="whatsapp-icon"
