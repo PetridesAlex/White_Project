@@ -828,6 +828,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     border: 3px solid #000000;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transform-style: preserve-3d;
 }
 
 .service-card-front {
@@ -860,6 +861,20 @@ body {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
+}
+
+/* Hide h3 and icon on FRONT side when card is flipped (for desktop hover) */
+.service-card-wrapper:hover .service-card-front h3,
+.service-card-wrapper:hover .service-card-front .service-icon {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: scale(0) !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
 .service-icon {
@@ -1879,24 +1894,48 @@ body {
     .service-card-wrapper:nth-child(1) .service-card {
         animation-delay: 0s;
     }
+    .service-card-wrapper:nth-child(1) .service-card-front h3,
+    .service-card-wrapper:nth-child(1) .service-card-front .service-icon {
+        animation-delay: 0s;
+    }
 
     .service-card-wrapper:nth-child(2) .service-card {
+        animation-delay: 1.5s;
+    }
+    .service-card-wrapper:nth-child(2) .service-card-front h3,
+    .service-card-wrapper:nth-child(2) .service-card-front .service-icon {
         animation-delay: 1.5s;
     }
 
     .service-card-wrapper:nth-child(3) .service-card {
         animation-delay: 3s;
     }
+    .service-card-wrapper:nth-child(3) .service-card-front h3,
+    .service-card-wrapper:nth-child(3) .service-card-front .service-icon {
+        animation-delay: 3s;
+    }
 
     .service-card-wrapper:nth-child(4) .service-card {
+        animation-delay: 4.5s;
+    }
+    .service-card-wrapper:nth-child(4) .service-card-front h3,
+    .service-card-wrapper:nth-child(4) .service-card-front .service-icon {
         animation-delay: 4.5s;
     }
 
     .service-card-wrapper:nth-child(5) .service-card {
         animation-delay: 6s;
     }
+    .service-card-wrapper:nth-child(5) .service-card-front h3,
+    .service-card-wrapper:nth-child(5) .service-card-front .service-icon {
+        animation-delay: 6s;
+    }
 
     .service-card-wrapper:nth-child(6) .service-card {
+        animation-delay: 7.5s;
+    }
+    .service-card-wrapper:nth-child(6) .service-card-front h3,
+    .service-card-wrapper:nth-child(6) .service-card-front .service-icon {
         animation-delay: 7.5s;
     }
 
@@ -1918,6 +1957,28 @@ body {
         }
         100% {
             transform: rotateY(0deg);
+        }
+    }
+
+    /* Hide front h3 and icon when card is flipped (30% to 60% of animation = 180deg state) */
+    @keyframes hideFrontContent {
+        0%, 25% {
+            opacity: 1;
+            visibility: visible;
+            display: block;
+        }
+        30%, 55% {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            display: none !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+        }
+        60%, 100% {
+            opacity: 1;
+            visibility: visible;
+            display: block;
         }
     }
 
@@ -1949,6 +2010,13 @@ body {
         font-weight: 600;
         word-break: break-word;
         overflow-wrap: break-word;
+        /* Hide h3 when card is flipped on mobile */
+        animation: hideFrontContent 12s ease-in-out infinite;
+    }
+
+    .service-card-front .service-icon {
+        /* Hide icon when card is flipped on mobile */
+        animation: hideFrontContent 12s ease-in-out infinite;
     }
 
     /* Hide h3 and icon on back side for mobile */
