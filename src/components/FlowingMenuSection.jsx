@@ -42,6 +42,10 @@ const playstationGames = [
 const FlowingMenuSection = () => {
   return (
     <section id="games" className="games-section">
+      {/* Pink decorative shapes */}
+      <div className="games-pink-shape games-pink-shape-1"></div>
+      <div className="games-pink-shape games-pink-shape-2"></div>
+      <div className="games-pink-shape games-pink-shape-3"></div>
       <div className="games-wrapper">
         <h2 className="section-title-large">AVAILABLE GAMES</h2>
         

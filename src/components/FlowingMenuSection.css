@@ -3,6 +3,16 @@
     background: #FFFFFF;
     position: relative;
     overflow: hidden;
+    background-image: 
+        radial-gradient(circle at 30% 40%, rgba(255, 105, 180, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(255, 20, 147, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 120px,
+            rgba(255, 105, 180, 0.012) 120px,
+            rgba(255, 105, 180, 0.012) 122px
+        );
 }
 
 .games-section::before {
@@ -13,10 +23,12 @@
     transform: translateX(-50%);
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, rgba(128, 128, 128, 0.04) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.06) 0%, rgba(255, 20, 147, 0.03) 50%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
+    filter: blur(60px);
+    animation: floatShape 20s ease-in-out infinite;
 }
 
 .games-section::after {
@@ -26,10 +38,52 @@
     right: -100px;
     width: 500px;
     height: 500px;
-    background: linear-gradient(135deg, rgba(128, 128, 128, 0.05), transparent);
+    background: radial-gradient(circle, rgba(255, 20, 147, 0.05) 0%, rgba(220, 20, 60, 0.02) 50%, transparent 70%);
     border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
     z-index: 0;
     pointer-events: none;
+    filter: blur(50px);
+    animation: floatShape 25s ease-in-out infinite reverse;
+}
+
+/* Pink decorative shapes for Games section */
+.games-pink-shape {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+    filter: blur(35px);
+}
+
+.games-pink-shape-1 {
+    top: 20%;
+    right: 8%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.35) 0%, rgba(255, 20, 147, 0.15) 50%, transparent 70%);
+    border-radius: 50%;
+    animation: floatShape 16s ease-in-out infinite;
+}
+
+.games-pink-shape-2 {
+    bottom: 20%;
+    left: 10%;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(255, 20, 147, 0.3) 0%, rgba(220, 20, 60, 0.12) 50%, transparent 70%);
+    border-radius: 50%;
+    animation: floatShape 19s ease-in-out infinite reverse;
+}
+
+.games-pink-shape-3 {
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.2) 0%, rgba(255, 20, 147, 0.08) 50%, transparent 70%);
+    border-radius: 50%;
+    animation: floatShape 23s ease-in-out infinite;
 }
 
 .games-wrapper {
@@ -229,7 +283,7 @@
 
 .special-label-text {
     font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     color: #333333;
     text-align: center;
@@ -242,7 +296,7 @@
 
 .special-label-text .text-type__content {
     font-family: 'Orbitron', 'Anton', 'Oswald', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     color: #333333;
     text-align: center;
@@ -280,11 +334,48 @@
 
     .game-card {
         max-width: 100%;
-        padding: 1rem;
+        padding: 0.75rem;
+        gap: 0.75rem;
     }
 
     .game-card-image {
-        height: 150px;
+        height: clamp(110px, 26vw, 130px);
+        min-height: 110px;
+    }
+
+    .game-card-image img {
+        object-fit: contain !important;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    /* Ensure contain images are properly sized */
+    .game-card-image.image-contain {
+        padding: 0.5rem;
+    }
+
+    .game-card-image.image-contain img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Ensure tekken images are properly sized */
+    .game-card-image.image-tekken {
+        padding: 0.25rem;
+    }
+
+    .game-card-image.image-tekken img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+
+    .game-card-name {
+        font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+        letter-spacing: 0.3px;
     }
 
     .special-card {
@@ -293,13 +384,15 @@
     }
 
     .special-label-text {
-        font-size: clamp(2rem, 8vw, 3rem);
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
         line-height: 1.1;
+        letter-spacing: 1px;
     }
 
     .special-label-text .text-type__content {
-        font-size: clamp(2rem, 8vw, 3rem) !important;
+        font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
         line-height: 1.1 !important;
+        letter-spacing: 1px !important;
     }
 
     .playstation-special-text {
@@ -317,6 +410,53 @@
 
 /* Extra small devices (phones in portrait, less than 480px) */
 @media (max-width: 480px) {
+    .games-grid {
+        gap: 1rem;
+    }
+
+    .game-card {
+        padding: 0.65rem;
+        gap: 0.65rem;
+    }
+
+    .game-card-image {
+        height: clamp(90px, 22vw, 110px);
+        min-height: 90px;
+    }
+
+    .game-card-image img {
+        object-fit: contain !important;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .game-card-image.image-contain {
+        padding: 0.4rem;
+    }
+
+    .game-card-image.image-tekken {
+        padding: 0.2rem;
+    }
+
+    .game-card-name {
+        font-size: clamp(0.7rem, 2.2vw, 0.85rem);
+        letter-spacing: 0.2px;
+    }
+
+    .special-label-text {
+        font-size: clamp(1.2rem, 5vw, 2rem) !important;
+        line-height: 1.1 !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .special-label-text .text-type__content {
+        font-size: clamp(1.2rem, 5vw, 2rem) !important;
+        line-height: 1.1 !important;
+        letter-spacing: 0.5px !important;
+    }
+
     .playstation-special-text {
         font-size: clamp(0.85rem, 2vw, 1.2rem) !important;
         line-height: 1.35 !important;

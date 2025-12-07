@@ -12,7 +12,7 @@ const Location = () => {
   
   // Better Google Maps embed URL format
   const mapUrl = `https://maps.google.com/maps?q=${latitude},${longitude}&hl=en&z=17&output=embed`;
-  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+  const googleMapsLink = `https://www.google.com/maps/place/White+Tiger/@34.6976444,33.0457698,17z/data=!4m15!1m8!3m7!1s0x14e7336f0ed75279:0xd16e3d1e137e88e2!2sSpyrou+Kyprianou+Ave+4,+Limassol+4001!3b1!8m2!3d34.6976444!4d33.0483447!16s%2Fg%2F11m_jp7k62!3m5!1s0x14e733c3775fa7af:0x5cc17a07892597b7!8m2!3d34.6982409!4d33.0486068!16s%2Fg%2F11mkr57fsg?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D`;
 
   const locationStyle = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${locationBackground})`,
@@ -23,6 +23,10 @@ const Location = () => {
 
   return (
     <section id="location" className="location" style={locationStyle}>
+      {/* Pink decorative shapes */}
+      <div className="location-pink-shape location-pink-shape-1"></div>
+      <div className="location-pink-shape location-pink-shape-2"></div>
+      <div className="location-pink-shape location-pink-shape-3"></div>
       <div className="location-wrapper">
         <div className="location-content">
           <div className="location-info-wrapper">

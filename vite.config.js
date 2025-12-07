@@ -6,16 +6,24 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'three': ['three'],
-          'react-vendor': ['react', 'react-dom']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('gsap')) {
+              return 'gsap';
+            }
+          }
         }
       }
     },
     chunkSizeWarningLimit: 1000,
+    minify: 'esbuild',
+    sourcemap: false
   },
   optimizeDeps: {
-    include: ['react', 'react-dom'],
+    include: ['react', 'react-dom', 'gsap'],
   },
 })
 

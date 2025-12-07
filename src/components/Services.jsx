@@ -4,7 +4,7 @@ const Services = () => {
     {
       icon: '🚀',
       title: 'High-Speed Internet',
-      description: 'Experience ultra-fast fiber-optic internet built for gamers, creators, and professionals. Enjoy seamless browsing, lightning-quick downloads, and zero-lag online performance.'
+      description: 'Speed built for competitive players and smooth gameplay.'
     },
     {
       icon: '🎮',
@@ -24,12 +24,12 @@ const Services = () => {
     {
       icon: '🎂',
       title: 'Create your own birthday parties & Events',
-      description: "Book your child's birthday with us! We provide a fully equipped play space with high-performance Gaming PCs, PlayStation 5 stations (managed and ready to play), plus a full menu of food and beverages. Fun, safe, and unforgettable — everything is taken care of."
+      description: "Book your birthday party with us! Enjoy gaming PCs, PS5 stations, and tasty food and drinks. A fun, safe, and easy celebration for everyone."
     },
     {
       icon: '🏢',
       title: 'Corporate Events',
-      description: 'Host your corporate event in our modern, fully equipped space. Enjoy high-performance workstations, meeting areas, optional gaming stations for team-building, and a full menu of food and beverages. Perfect for workshops, team events, presentations, and after-work gatherings.'
+      description: 'Host your event in a cozy lounge setting with fast PCs, strong WiFi, and comfortable seating.'
     }
   ];
 

@@ -104,13 +104,17 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero">
+      {/* Pink decorative shapes */}
+      <div className="hero-pink-shape hero-pink-shape-1"></div>
+      <div className="hero-pink-shape hero-pink-shape-2"></div>
+      <div className="hero-pink-shape hero-pink-shape-3"></div>
       <div className="hero-content">
         <div className="hero-logo-container">
           <h1 className="hero-welcome">White Tiger</h1>
           <p className="hero-tagline">Where Gaming Meets Good Vibes</p>
           <img src={logo} alt="White Tiger Logo" className="hero-logo" />
           <p className="hero-description">
-            Welcome to White Tiger — a lively, modern hub designed for people who love to work smart, play hard, and enjoy life.
+            Welcome to White Tiger<span className="no-break-desktop"> — a lively</span>, modern hub designed for people who love to work smart, play hard, and enjoy life.
           </p>
         </div>
         <div className="hero-game-logos">

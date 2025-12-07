@@ -7,6 +7,7 @@ import React, { useState, Suspense, lazy } from 'react';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 // Lazy load components for better performance (code splitting)
 const Services = lazy(() => import('./components/Services'));
@@ -45,20 +46,22 @@ function App() {
   );
 
   return (
-    <div className="App">
-      {isLoading && <Loader onLoadComplete={handleLoadComplete} />}
-      <Navbar />
-      {/* All page sections */}
-      <Hero />
-      <Suspense fallback={<LoadingFallback />}>
-        <Services />
-        <Reviews />
-        <FlowingMenuSection />
-        <Contact />
-        <Location />
-        <Footer />
-      </Suspense>
-    </div>
+    <LanguageProvider>
+      <div className="App">
+        {isLoading && <Loader onLoadComplete={handleLoadComplete} />}
+        <Navbar />
+        {/* All page sections */}
+        <Hero />
+        <Suspense fallback={<LoadingFallback />}>
+          <Services />
+          <Reviews />
+          <FlowingMenuSection />
+          <Contact />
+          <Location />
+          <Footer />
+        </Suspense>
+      </div>
+    </LanguageProvider>
   );
 }
 

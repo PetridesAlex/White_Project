@@ -1,6 +1,8 @@
-// Import useState to manage mobile menu state
-import { useState } from 'react';
+// Import useState and useEffect to manage mobile menu state
+import { useState, useEffect, useRef } from 'react';
 import logo from '../assets/images/logo.png';
+import { useLanguage } from '../contexts/LanguageContext';
+import translations from '../translations';
 
 // ============================================
 // NAVBAR COMPONENT
@@ -12,6 +14,27 @@ const Navbar = () => {
   // menuOpen = true if menu is open, false if closed
   // setMenuOpen = function to change menu state
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const { language, changeLanguage } = useLanguage();
+  const t = translations[language] || translations.en;
+  const langMenuRef = useRef(null);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
+        setLangMenuOpen(false);
+      }
+    };
+
+    if (langMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [langMenuOpen]);
 
   // ============================================
   // FUNCTION: Toggle mobile menu open/closed
@@ -74,14 +97,55 @@ const Navbar = () => {
             onClick: When clicked, smoothly scroll to section
             (e) => handleSmoothScroll(e, '#home') is an arrow function
           */}
-          <li><a href="#home" onClick={(e) => handleSmoothScroll(e, '#home')}>Home</a></li>
-          <li><a href="#services" onClick={(e) => handleSmoothScroll(e, '#services')}>Services</a></li>
-          <li><a href="#games" onClick={(e) => handleSmoothScroll(e, '#games')}>Games</a></li>
-          <li><a href="#location" onClick={(e) => handleSmoothScroll(e, '#location')}>Location</a></li>
-          <li><a href="#contact" onClick={(e) => handleSmoothScroll(e, '#contact')}>Contact</a></li>
+          <li><a href="#home" onClick={(e) => handleSmoothScroll(e, '#home')}>{t.nav.home}</a></li>
+          <li><a href="#services" onClick={(e) => handleSmoothScroll(e, '#services')}>{t.nav.services}</a></li>
+          <li><a href="#games" onClick={(e) => handleSmoothScroll(e, '#games')}>{t.nav.games}</a></li>
+          <li><a href="#location" onClick={(e) => handleSmoothScroll(e, '#location')}>{t.nav.location}</a></li>
+          <li><a href="#contact" onClick={(e) => handleSmoothScroll(e, '#contact')}>{t.nav.contact}</a></li>
         </ul>
         
         <div className="nav-actions">
+          {/* Language Selector */}
+          <div className="language-selector" ref={langMenuRef}>
+            <button 
+              className="language-toggle"
+              onClick={() => setLangMenuOpen(!langMenuOpen)}
+              aria-label="Change language"
+            >
+              {language === 'en' ? 'EN' : language === 'el' ? 'EL' : 'RU'}
+            </button>
+            {langMenuOpen && (
+              <div className="language-dropdown">
+                <button
+                  className={`lang-option ${language === 'en' ? 'active' : ''}`}
+                  onClick={() => {
+                    changeLanguage('en');
+                    setLangMenuOpen(false);
+                  }}
+                >
+                  English
+                </button>
+                <button
+                  className={`lang-option ${language === 'el' ? 'active' : ''}`}
+                  onClick={() => {
+                    changeLanguage('el');
+                    setLangMenuOpen(false);
+                  }}
+                >
+                  Ελληνικά
+                </button>
+                <button
+                  className={`lang-option ${language === 'ru' ? 'active' : ''}`}
+                  onClick={() => {
+                    changeLanguage('ru');
+                    setLangMenuOpen(false);
+                  }}
+                >
+                  Русский
+                </button>
+              </div>
+            )}
+          </div>
           {/* WhatsApp link */}
           <a 
             href="https://wa.me/35797973773" 

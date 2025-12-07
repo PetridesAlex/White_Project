@@ -102,7 +102,6 @@ const Reviews = () => {
           ]);
         }
       } catch (err) {
-        console.error('Error fetching reviews:', err);
         setError(err.message);
         // Fallback to real reviews from Google on error
         setReviews([

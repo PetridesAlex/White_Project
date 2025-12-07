@@ -276,11 +276,8 @@ export const LogoLoop = memo(
             draggable={false}
             style={{ display: 'block', visibility: 'visible', opacity: 1 }}
             onError={(e) => {
-              console.error('Failed to load logo:', item.src, item.alt);
-              e.target.style.border = '2px solid red';
-            }}
-            onLoad={() => {
-              console.log('Logo loaded successfully:', item.alt, item.src);
+              // Silently handle image load errors
+              e.target.style.opacity = '0.5';
             }}
           />
         );
