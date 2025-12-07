@@ -37,6 +37,12 @@ html {
     scroll-padding-top: 80px;
 }
 
+/* Optimize scrolling performance */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 body {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
@@ -44,6 +50,10 @@ body {
     background: var(--bg-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
+    /* Optimize scroll performance */
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    will-change: scroll-position;
 }
 
 .container {
@@ -337,7 +347,7 @@ body {
         padding: 1rem;
         font-size: 1rem;
         min-height: 48px;
-        display: flex;
+    display: flex;
         align-items: center;
         -webkit-tap-highlight-color: rgba(37, 211, 102, 0.2);
         touch-action: manipulation;
@@ -460,6 +470,10 @@ body {
     overflow: hidden;
     z-index: 1;
     background: #FFFFFF;
+    /* Performance optimizations */
+    contain: layout style paint;
+    transform: translateZ(0);
+    will-change: scroll-position;
     background-image: 
         radial-gradient(circle at 20% 50%, rgba(255, 105, 180, 0.04) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(128, 128, 128, 0.02) 0%, transparent 50%),
@@ -484,8 +498,12 @@ body {
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    filter: blur(40px);
+    filter: blur(20px);
     animation: floatShape 20s ease-in-out infinite;
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .hero::after {
@@ -499,8 +517,12 @@ body {
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    filter: blur(50px);
+    filter: blur(20px);
     animation: floatShape 25s ease-in-out infinite reverse;
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* Pink decorative shapes */
@@ -509,7 +531,11 @@ body {
     z-index: 1;
     pointer-events: none;
     opacity: 0.6;
-    filter: blur(30px);
+    filter: blur(15px);
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .hero-pink-shape-1 {
@@ -725,19 +751,19 @@ body {
 
 @keyframes floatShape {
     0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
+        transform: translate3d(0, 0, 0) rotate(0deg);
         opacity: 0.8;
     }
     25% {
-        transform: translate(30px, -30px) rotate(5deg);
+        transform: translate3d(30px, -30px, 0) rotate(5deg);
         opacity: 0.9;
     }
     50% {
-        transform: translate(-20px, 40px) rotate(-5deg);
+        transform: translate3d(-20px, 40px, 0) rotate(-5deg);
         opacity: 0.7;
     }
     75% {
-        transform: translate(40px, 20px) rotate(3deg);
+        transform: translate3d(40px, 20px, 0) rotate(3deg);
         opacity: 0.85;
     }
 }
@@ -815,6 +841,10 @@ body {
     position: relative;
     overflow: hidden;
     background: #FFFFFF !important;
+    /* Performance optimizations */
+    contain: layout style paint;
+    transform: translateZ(0);
+    will-change: scroll-position;
     background-image: 
         repeating-linear-gradient(
             45deg,
@@ -908,6 +938,7 @@ body {
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
     backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 /* Desktop: hover to flip */
@@ -1052,6 +1083,10 @@ body {
     position: relative;
     overflow: hidden;
     background: #FFFFFF !important;
+    /* Performance optimizations */
+    contain: layout style paint;
+    transform: translateZ(0);
+    will-change: scroll-position;
 }
 
 .reviews-section::before {
@@ -1274,6 +1309,10 @@ body {
     padding: 120px 0;
     position: relative;
     overflow: hidden;
+    /* Performance optimizations */
+    contain: layout style paint;
+    transform: translateZ(0);
+    will-change: scroll-position;
 }
 
 .contact-wrapper {
@@ -1439,6 +1478,10 @@ body {
     background: var(--bg-secondary);
     position: relative;
     overflow: hidden;
+    /* Performance optimizations */
+    contain: layout style paint;
+    transform: translateZ(0);
+    will-change: scroll-position;
     background-image: 
         radial-gradient(circle at 25% 30%, rgba(255, 105, 180, 0.04) 0%, transparent 50%),
         radial-gradient(circle at 75% 70%, rgba(255, 20, 147, 0.03) 0%, transparent 50%),
@@ -1462,8 +1505,12 @@ body {
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    filter: blur(50px);
+    filter: blur(20px);
     animation: floatShape 18s ease-in-out infinite;
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .location::after {
@@ -1477,8 +1524,12 @@ body {
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    filter: blur(55px);
+    filter: blur(20px);
     animation: floatShape 22s ease-in-out infinite reverse;
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* Pink decorative shapes for Location section */
@@ -1487,7 +1538,11 @@ body {
     z-index: 1;
     pointer-events: none;
     opacity: 0.4;
-    filter: blur(40px);
+    filter: blur(15px);
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .location-pink-shape-1 {

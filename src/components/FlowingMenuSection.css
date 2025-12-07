@@ -3,6 +3,10 @@
     background: #FFFFFF;
     position: relative;
     overflow: hidden;
+    /* Performance optimizations */
+    contain: layout style paint;
+    transform: translateZ(0);
+    will-change: scroll-position;
     background-image: 
         radial-gradient(circle at 30% 40%, rgba(255, 105, 180, 0.04) 0%, transparent 50%),
         radial-gradient(circle at 70% 60%, rgba(255, 20, 147, 0.03) 0%, transparent 50%),
@@ -20,15 +24,18 @@
     position: absolute;
     top: -100px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
     width: 800px;
     height: 800px;
     background: radial-gradient(circle, rgba(255, 105, 180, 0.06) 0%, rgba(255, 20, 147, 0.03) 50%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    filter: blur(60px);
+    filter: blur(20px);
     animation: floatShape 20s ease-in-out infinite;
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
 .games-section::after {
@@ -42,8 +49,12 @@
     border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
     z-index: 0;
     pointer-events: none;
-    filter: blur(50px);
+    filter: blur(20px);
     animation: floatShape 25s ease-in-out infinite reverse;
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* Pink decorative shapes for Games section */
@@ -52,7 +63,11 @@
     z-index: 1;
     pointer-events: none;
     opacity: 0.5;
-    filter: blur(35px);
+    filter: blur(15px);
+    /* Performance optimizations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .games-pink-shape-1 {
