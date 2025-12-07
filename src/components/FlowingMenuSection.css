@@ -383,6 +383,10 @@
         max-width: 100% !important;
     }
 
+    .special-card-content {
+        transform: translateY(-15px);
+    }
+
     .special-label-text {
         font-size: clamp(1.5rem, 6vw, 2.5rem);
         line-height: 1.1;
@@ -443,6 +447,10 @@
     .game-card-name {
         font-size: clamp(0.7rem, 2.2vw, 0.85rem);
         letter-spacing: 0.2px;
+    }
+
+    .special-card-content {
+        transform: translateY(-12px);
     }
 
     .special-label-text {

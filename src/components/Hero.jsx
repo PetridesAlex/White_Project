@@ -12,8 +12,12 @@ import dotaLogo from '../assets/images/Dota 2.png';
 import cs2Logo from '../assets/images/counter strike 2.png';
 import valorantLogo from '../assets/images/valorant.png';
 import rocketLeagueLogo from '../assets/images/rocket leugue.png';
+import { useLanguage } from '../contexts/LanguageContext';
+import translations from '../translations';
 
 const Hero = () => {
+  const { language } = useLanguage();
+  const t = translations[language] || translations.en;
   // Game logos - using local images with proper labels
   const gameLogos = [
     { 
@@ -110,12 +114,10 @@ const Hero = () => {
       <div className="hero-pink-shape hero-pink-shape-3"></div>
       <div className="hero-content">
         <div className="hero-logo-container">
-          <h1 className="hero-welcome">White Tiger</h1>
-          <p className="hero-tagline">Where Gaming Meets Good Vibes</p>
+          <h1 className="hero-welcome">{t.hero.welcome}</h1>
+          <p className="hero-tagline">{t.hero.tagline}</p>
           <img src={logo} alt="White Tiger Logo" className="hero-logo" />
-          <p className="hero-description">
-            Welcome to White Tiger<span className="no-break-desktop"> — a lively</span>, modern hub designed for people who love to work smart, play hard, and enjoy life.
-          </p>
+          <p className="hero-description">{t.hero.description}</p>
         </div>
         <div className="hero-game-logos">
           <LogoLoop

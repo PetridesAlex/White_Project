@@ -1856,7 +1856,7 @@ body {
 
     /* Auto-flip animation for mobile - cards will automatically flip */
     .service-card {
-        animation: autoFlipMobile 8s ease-in-out infinite;
+        animation: autoFlipMobile 12s ease-in-out infinite;
     }
 
     /* Staggered animation delays for each card */
@@ -1865,40 +1865,49 @@ body {
     }
 
     .service-card-wrapper:nth-child(2) .service-card {
-        animation-delay: 1s;
+        animation-delay: 1.5s;
     }
 
     .service-card-wrapper:nth-child(3) .service-card {
-        animation-delay: 2s;
-    }
-
-    .service-card-wrapper:nth-child(4) .service-card {
         animation-delay: 3s;
     }
 
+    .service-card-wrapper:nth-child(4) .service-card {
+        animation-delay: 4.5s;
+    }
+
     .service-card-wrapper:nth-child(5) .service-card {
-        animation-delay: 4s;
+        animation-delay: 6s;
     }
 
     .service-card-wrapper:nth-child(6) .service-card {
-        animation-delay: 5s;
+        animation-delay: 7.5s;
     }
 
     @keyframes autoFlipMobile {
-        0%, 35% {
+        0% {
             transform: rotateY(0deg);
         }
-        40%, 60% {
+        25% {
+            transform: rotateY(0deg);
+        }
+        30% {
             transform: rotateY(180deg);
         }
-        65%, 100% {
+        55% {
+            transform: rotateY(180deg);
+        }
+        60% {
+            transform: rotateY(0deg);
+        }
+        100% {
             transform: rotateY(0deg);
         }
     }
 
     /* Disable hover flip on mobile - auto-flip only */
     .service-card-wrapper:hover .service-card {
-        animation: autoFlipMobile 8s ease-in-out infinite;
+        animation: autoFlipMobile 12s ease-in-out infinite;
     }
 
     .service-card-front,
