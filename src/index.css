@@ -1057,8 +1057,8 @@ body {
 
 .service-card-back p {
     color: #000000;
-    line-height: 1.5;
-    font-size: 0.875rem;
+    line-height: 1.7;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     position: relative;
     z-index: 1;
     text-align: center;
