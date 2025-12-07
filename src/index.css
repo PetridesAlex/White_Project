@@ -897,7 +897,6 @@ body {
     line-height: 1;
     flex-shrink: 0;
     width: 100%;
-    transition: opacity 0s ease, visibility 0s ease, transform 0s ease;
 }
 
 .service-card-front h3 {
@@ -918,7 +917,6 @@ body {
     word-wrap: break-word;
     hyphens: auto;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    transition: opacity 0s ease, visibility 0s ease, transform 0s ease;
 }
 
 .service-card-back p {
@@ -1925,7 +1923,7 @@ body {
         transform: rotateY(180deg) !important;
     }
 
-    /* Hide h3 and icon on FRONT side immediately when card is flipped on mobile */
+    /* Hide h3 and icon on FRONT side immediately when card is flipped on mobile - no delay */
     .service-card.flipped .service-card-front h3,
     .service-card.flipped .service-card-front .service-icon {
         display: none !important;
@@ -1938,10 +1936,11 @@ body {
         overflow: hidden !important;
         pointer-events: none !important;
         transform: scale(0) !important;
-        transition: opacity 0s ease, visibility 0s ease, transform 0s ease, display 0s ease !important;
+        transition: none !important;
+        animation: none !important;
     }
 
-    /* Show h3 and icon immediately when card is not flipped */
+    /* Show h3 and icon immediately when card is not flipped - no delay */
     .service-card:not(.flipped) .service-card-front h3,
     .service-card:not(.flipped) .service-card-front .service-icon {
         display: block !important;
@@ -1949,7 +1948,11 @@ body {
         opacity: 1 !important;
         height: auto !important;
         width: 100% !important;
-        transition: opacity 0s ease, visibility 0s ease, transform 0s ease, display 0s ease !important;
+        margin: initial !important;
+        padding: initial !important;
+        transform: scale(1) !important;
+        transition: none !important;
+        animation: none !important;
     }
 
     /* Disable hover flip on mobile - use click only */
@@ -1984,11 +1987,13 @@ body {
         font-weight: 600;
         word-break: break-word;
         overflow-wrap: break-word;
-        transition: opacity 0s ease !important, visibility 0s ease !important, transform 0s ease !important;
+        transition: none !important;
+        animation: none !important;
     }
 
     .service-card-front .service-icon {
-        transition: opacity 0s ease !important, visibility 0s ease !important, transform 0s ease !important;
+        transition: none !important;
+        animation: none !important;
     }
 
     /* Hide h3 and icon on back side for mobile */
