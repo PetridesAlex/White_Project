@@ -49,17 +49,26 @@ function App() {
     <LanguageProvider>
       <div className="App">
         {isLoading && <Loader onLoadComplete={handleLoadComplete} />}
-        <Navbar />
-        {/* All page sections */}
-        <Hero />
-        <Suspense fallback={<LoadingFallback />}>
-          <Services />
-          <Reviews />
-          <FlowingMenuSection />
-          <Contact />
-          <Location />
-          <Footer />
-        </Suspense>
+        <div 
+          style={{ 
+            opacity: isLoading ? 0 : 1, 
+            transition: 'opacity 0.6s ease-in',
+            pointerEvents: isLoading ? 'none' : 'auto',
+            visibility: isLoading ? 'hidden' : 'visible'
+          }}
+        >
+          <Navbar />
+          {/* All page sections */}
+          <Hero />
+          <Suspense fallback={<LoadingFallback />}>
+            <Services />
+            <Reviews />
+            <FlowingMenuSection />
+            <Contact />
+            <Location />
+            <Footer />
+          </Suspense>
+        </div>
       </div>
     </LanguageProvider>
   );
