@@ -52,7 +52,7 @@ function App() {
         <div 
           style={{ 
             opacity: isLoading ? 0 : 1, 
-            transition: 'opacity 0.6s ease-in',
+            transition: 'opacity 0.3s ease-in',
             pointerEvents: isLoading ? 'none' : 'auto',
             visibility: isLoading ? 'hidden' : 'visible'
           }}

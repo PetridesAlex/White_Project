@@ -10,33 +10,20 @@ function Loader({ onLoadComplete }) {
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    // Wait for page to fully load and all resources
+    // Load immediately without any delays
     const handleLoad = () => {
-      // Minimum display time of 2 seconds to show branding
-      const minDisplayTime = 2000;
-      const startTime = Date.now();
-      
-      const checkAndFade = () => {
-        const elapsed = Date.now() - startTime;
-        if (elapsed >= minDisplayTime) {
-          setIsFading(true);
-          // Wait for fade out animation before calling onLoadComplete
-          setTimeout(() => {
-            setIsVisible(false);
-            if (onLoadComplete) onLoadComplete();
-          }, 600);
-        } else {
-          setTimeout(checkAndFade, 100);
-        }
-      };
-      
-      checkAndFade();
+      setIsFading(true);
+      // Wait for fade out animation before calling onLoadComplete
+      setTimeout(() => {
+        setIsVisible(false);
+        if (onLoadComplete) onLoadComplete();
+      }, 300);
     };
 
     // Check if page is already loaded
     if (document.readyState === 'complete') {
-      // Small delay to ensure everything is ready
-      setTimeout(handleLoad, 100);
+      // Load immediately
+      handleLoad();
     } else {
       window.addEventListener('load', handleLoad);
       return () => window.removeEventListener('load', handleLoad);
